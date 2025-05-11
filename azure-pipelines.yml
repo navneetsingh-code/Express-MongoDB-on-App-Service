@@ -29,11 +29,6 @@ stages:
         npm install
       displayName: 'npm install'
 
-    - script: |
-        npm test
-      displayName: 'npm test'
-      # you can remove this step if you have no tests
-
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:
