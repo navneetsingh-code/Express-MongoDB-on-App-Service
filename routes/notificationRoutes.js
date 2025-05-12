@@ -4,7 +4,7 @@ const notificationController = require('../controllers/notificationController');
 const verifyToken = require('../middleware/authMiddleware');
 
 router.post('/notify', verifyToken, notificationController.sendNotificationEmail);
-router.post('/publishNotification', notificationController.publishNotification);
+router.post('/publishNotification', verifyToken, notificationController.publishNotification);
 router.post
 
 module.exports = router;
