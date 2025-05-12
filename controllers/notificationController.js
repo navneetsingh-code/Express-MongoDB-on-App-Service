@@ -5,10 +5,10 @@ const Notification = require('../models/Notification');
 
 
 exports.publishNotification = async (req, res) => {
-     const { to, subject, message } = req.body;
+     const { to, subject, body } = req.body;
 
-    if (!to || !subject || !message) {
-        return res.status(400).json({ error: 'to, subject, and message are required' });
+    if (!to || !subject || !body) {
+        return res.status(400).json({ error: 'to, subject, and body are required' });
     }
 
     try {
@@ -16,13 +16,13 @@ exports.publishNotification = async (req, res) => {
         await Notification.create({
             to,
             subject,
-            message,
+            body,
             status: 'queued',
             source: 'api'
         });
 
         // Send to Azure Bus
-        await sendNotificationMessage({ to, subject, message });
+        await sendNotificationMessage({ to, subject, body });
 
         res.status(200).json({ message: 'Notification published and logged' });
     } catch (error) {
@@ -41,9 +41,9 @@ const transporter = nodemailer.createTransport({
 });
 
 exports.sendNotificationEmail = async (req, res) => {
-    const { to, subject, message } = req.body;
+    const { to, subject, body } = req.body;
 
-    if (!to || !subject || !message) {
+    if (!to || !subject || !body) {
         return res.status(400).json({ error: 'to, subject, and message are required' });
     }
 
@@ -51,7 +51,7 @@ exports.sendNotificationEmail = async (req, res) => {
         from: 'your_email@gmail.com',
         to,
         subject,
-        text: message
+        text: body
     };
 
     try {

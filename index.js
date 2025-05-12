@@ -26,6 +26,11 @@ connectMongoDB(); // Connect to MongoDB
 
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  res.send('🚀 My Express API is running!');
+});
+
+
 const userRoutes = require('./routes/userRoutes');
 app.use('/user', userRoutes);
 
