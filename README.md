@@ -123,7 +123,7 @@ ServiceBusMessageReceived
 
 💬 Contact
 Created by Navneet Singh
-📫 Email: navneet.singh@ddds.ga.gov
+📫 Email: singh.navneetinfo@gmail.com
 🔗 Azure, DevOps, Cloud, and AI enthusiast
 
 
